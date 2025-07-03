@@ -16,11 +16,6 @@ cWarrior::~cWarrior()
 
 }
 
-void cWarrior::Setm_nHealth(int nDamage)
-{
-	m_nHealth -= nDamage;
-}
-
 void cWarrior::CharacterUi()
 {
 	system("cls");

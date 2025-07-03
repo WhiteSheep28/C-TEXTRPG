@@ -5,8 +5,8 @@
 
 using namespace std;
 
-int cMainSystem::m_nSelect = 0;
 int cMainSystem::m_nScore = 0;
+int cMainSystem::m_nSelect = 0;
 int cMainSystem::m_nHighScore = 0;
 
 void main()

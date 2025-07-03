@@ -3,6 +3,7 @@
 #include "MainSystem.h"
 #include "DungeonUi.h"
 #include "Ui.h"
+#include "Inventory.h"
 #include "Warrior.h"
 #include "Socerer.h"
 #include "Archer.h"
@@ -126,6 +127,8 @@ void cUi::CharacterIntroduceUi(cMainSystem* pMainSystem, cMainSystem* Character)
 
 void cUi::MainUi(cMainSystem * pMainSystem, cMainSystem * Character)
 {
+	cMainSystem* pInventory = new cInventory;
+
 	while (1)
 	{
 
@@ -148,9 +151,10 @@ void cUi::MainUi(cMainSystem * pMainSystem, cMainSystem * Character)
 		{
 			cMainSystem* pDungeonUi = new cDungeonUi;
 
+			Character->Setm_nMinusHungry();
+			
 			pDungeonUi->DungeonRandomMob(pMainSystem, Character);
 
-			
 			delete pDungeonUi;
 
 			break;
@@ -161,12 +165,13 @@ void cUi::MainUi(cMainSystem * pMainSystem, cMainSystem * Character)
 		}
 		case 3:
 		{
-
+			pInventory->InventoryUi(pMainSystem, Character);
 		}
 		case 4:
 		{
 			delete pMainSystem;
 			delete Character;
+			delete pInventory;
 
 			exit(1);
 		}

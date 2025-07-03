@@ -16,11 +16,6 @@ cSocerer::~cSocerer()
 
 }
 
-void cSocerer::Setm_nHealth(int nDamage)
-{
-	m_nHealth -= nDamage;
-}
-
 void cSocerer::CharacterUi()
 {
 	system("cls");

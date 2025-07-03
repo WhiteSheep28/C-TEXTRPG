@@ -10,8 +10,6 @@ public:
 	cWolf();
 	virtual ~cWolf();
 
-	virtual void Setm_nHealth(int nDamage);
-
 protected:
 
 private:

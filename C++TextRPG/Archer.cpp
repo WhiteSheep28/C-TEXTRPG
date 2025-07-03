@@ -16,11 +16,6 @@ cArcher::~cArcher()
 
 }
 
-void cArcher::Setm_nHealth(int nDamage)
-{
-	m_nHealth -= nDamage;
-}
-
 void cArcher::CharacterUi()
 {
 	system("cls");

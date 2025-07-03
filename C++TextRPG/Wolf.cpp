@@ -15,8 +15,3 @@ cWolf::~cWolf()
 {
 
 }
-
-void cWolf::Setm_nHealth(int nDamage)
-{
-	m_nHealth -= nDamage;
-}

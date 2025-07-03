@@ -15,8 +15,3 @@ cSlime::~cSlime()
 {
 
 }
-
-void cSlime::Setm_nHealth(int nDamage)
-{
-	m_nHealth -= nDamage;
-}

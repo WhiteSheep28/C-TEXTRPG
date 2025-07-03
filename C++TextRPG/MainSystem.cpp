@@ -28,4 +28,6 @@ void cMainSystem::Setm_nHighScore()
 	{
 		m_nHighScore = m_nScore;
 	}
+
+	m_nScore = 0;
 }

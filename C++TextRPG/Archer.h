@@ -14,8 +14,6 @@ public:
 
 	virtual void SkillTree(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster);
 
-	virtual void Setm_nHealth(int nDamage);
-
 protected:
 
 private:

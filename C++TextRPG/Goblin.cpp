@@ -15,8 +15,3 @@ cGoblin::~cGoblin()
 {
 
 }
-
-void cGoblin::Setm_nHealth(int nDamage)
-{
-	m_nHealth -= nDamage;
-}

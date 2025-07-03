@@ -10,8 +10,6 @@ public:
 	cGoblin();
 	virtual ~cGoblin();
 
-	virtual void Setm_nHealth(int nDamage);
-
 protected:
 
 private:
