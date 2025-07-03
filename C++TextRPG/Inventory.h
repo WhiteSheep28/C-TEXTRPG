@@ -11,6 +11,9 @@ public:
 	virtual ~cInventory();
 
 	virtual void InventoryUi(cMainSystem* pMainSystem, cMainSystem* Character);
+	virtual void InputInventory(int ItemCode, int ItemNum);
+	virtual void CleanInventory();
+
 	void BreadUi();
 	void HealthPotionUi();
 

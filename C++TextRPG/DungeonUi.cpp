@@ -2,6 +2,8 @@
 
 #include "DungeonUi.h"
 #include "MainSystem.h"
+#include "Inventory.h"
+#include "MinoTauros.h"
 #include "Goblin.h"
 #include "Slime.h"
 #include "Wolf.h"
@@ -9,6 +11,7 @@
 cDungeonUi::cDungeonUi()
 {
 	m_nRandomMonster = 0;
+	m_nRandomItem = 0;
 }
 
 cDungeonUi::~cDungeonUi()
@@ -16,10 +19,28 @@ cDungeonUi::~cDungeonUi()
 
 }
 
-void cDungeonUi::DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Character)
+void cDungeonUi::DungeonRandomItem()
+{
+	m_nRandomItem = rand() % 2 + 1;
+}
+
+void cDungeonUi::DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory)
 {
 	while (1)
 	{
+		if (pMainSystem->Getm_nBossCount() == 10)
+		{
+			cMainSystem* pMinoTauros = new cMinoTauros;
+			DungeonFightUi(pMainSystem, Character, pMinoTauros, Inventory);
+			if (Character->Getm_nHealth() <= 0)
+			{
+				delete pMinoTauros;
+				return;
+			}
+			delete pMinoTauros;
+			break;
+		}
+
 		m_nRandomMonster = rand() % 3;
 
 		switch (m_nRandomMonster)
@@ -27,21 +48,36 @@ void cDungeonUi::DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Charact
 		case 0:
 		{
 			cMainSystem* pGoblin = new cGoblin;
-			DungeonFightUi(pMainSystem, Character, pGoblin);
+			DungeonFightUi(pMainSystem, Character, pGoblin, Inventory);
+			if (Character->Getm_nHealth() <= 0)
+			{
+				delete pGoblin;
+				return;
+			}
 			delete pGoblin;
 			break;
 		}
 		case 1:
 		{
 			cMainSystem* pSlime = new cSlime;
-			DungeonFightUi(pMainSystem, Character, pSlime);
+			DungeonFightUi(pMainSystem, Character, pSlime, Inventory);
+			if (Character->Getm_nHealth() <= 0)
+			{
+				delete pSlime;
+				return;
+			}
 			delete pSlime;
 			break;
 		}
 		case 2:
 		{
 			cMainSystem* pWolf = new cWolf;
-			DungeonFightUi(pMainSystem, Character, pWolf);
+			DungeonFightUi(pMainSystem, Character, pWolf, Inventory);
+			if (Character->Getm_nHealth() <= 0)
+			{
+				delete pWolf;
+				return;
+			}
 			delete pWolf;
 			break;
 		}
@@ -55,12 +91,18 @@ void cDungeonUi::DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Charact
 	}
 }
 
-void cDungeonUi::DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster)
+void cDungeonUi::DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster, cMainSystem* Inventory)
 {
+
 	while (1)
 	{
+		if (Character->Getm_nHealth() <= 0)
+		{
+			return;
+		}
+
 		system("cls");
-		cout << "{ ⑷營 類 : " << pMainSystem->Getm_nScore() << "類" << endl << endl;
+		cout << "{ ⑷營 類 : " << pMainSystem->Getm_nScore() << "類 }" << endl << endl;
 		cout << "{ " << Character->Getm_strName() << " }";
 		cout << "         { " << Monster->Getm_strName() << " }" << endl;
 		cout << "羹溘   : " << Character->Getm_nHealth();
@@ -72,13 +114,25 @@ void cDungeonUi::DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character
 
 		if (Monster->Getm_nHealth() <= 0)
 		{
+			pMainSystem->Setm_nBossCount();
 			pMainSystem->Setm_nScore();
+			DungeonRandomItem();
+			Inventory->InputInventory(Getm_nRandomItem(), 1);
 			break;
+		}
+
+		if (Getm_nSelect() >= 1 && Getm_nSelect() <= 4)
+		{
+			Character->Setm_nHealth(Monster->Getm_nAttack());
+		}
+
+		if (Getm_nSelect() == 5)
+		{
+			Inventory->InventoryUi(pMainSystem, Character);
 		}
 
 		if (Getm_nSelect() == 6)
 		{
-			pMainSystem->Setm_nHighScore();
 			break;
 		}
 	}

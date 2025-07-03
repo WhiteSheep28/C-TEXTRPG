@@ -14,6 +14,9 @@ public:
 	static int Getm_nScore() { return m_nScore; }
 	void Setm_nHighScore();
 	static int Getm_nHighScore() { return m_nHighScore; }
+	static void Setm_nBreadCount() { m_nBreadCount++; }
+	static void Setm_nBossCount() { m_nBossCount++; }
+	static int Getm_nBossCount() { return m_nBossCount; }
 
 
 	//Ui.h
@@ -24,13 +27,17 @@ public:
 	
 
 	//DungeonUi.h
-	virtual void DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Character) { ; }
-	virtual void DungeonFightUi() { ; }
+	virtual void DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory) { ; }
+	virtual void DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster, cMainSystem* Inventory) { ; }
+	virtual void DungeonRandomItem() { ; }
 
+	//FarmUi.h
+	virtual void FarmUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory) { ; }
 
 	//Inventory.h
 	virtual void InventoryUi(cMainSystem* pMainSystem, cMainSystem* Character) { ; }
-
+	virtual void InputInventory(int ItemCode, int ItemNum) { ; }
+	virtual void CleanInventory() { ; }
 
 	//Character.h
 	virtual void CharacterUi() { ; }
@@ -39,14 +46,34 @@ public:
 	
 	virtual string Getm_strName() { return m_strName; }
 	virtual void Setm_nHealth(int nDamage) { m_nHealth -= nDamage; } //상대의 체력 감소
-	virtual void Setm_nPlusHealth() { m_nHealth += 10; } //체력 물약
+	virtual void Setm_nPlusHealth() 
+	{ 
+		m_nHealth += 10; 
+		
+		if (m_nHealth > 100) //체력이 100을 넘지 않도록
+		{
+			m_nHealth = 100;
+		}
+	} //체력 물약
 	virtual int Getm_nHealth() { return m_nHealth; } 
 	virtual int Getm_nAttack() { return m_nAttack; }
-	virtual void Setm_nMinusHungry() { m_nHungry -= 10; } //플레이어 허기 감소
-	virtual void Setm_nPlusHungry() { m_nHungry += 100; } //플레이어 허기 증가
+	virtual void Setm_nMinusHungry() { m_nHungry -= 10;} //플레이어 허기 감소
+	virtual void Setm_nPlusHungry()
+	{ 
+		m_nHungry += 100;
+
+		if (m_nHungry > 100) //허기가 100을 넘지 않도록
+		{
+			m_nHungry = 100;
+		}
+	} //플레이어 허기 증가
 	virtual int Getm_nHungry() { return m_nHungry; }
 	
 protected:
+	static int m_nBossCount;
+
+	static int m_nBreadCount;
+
 	static int m_nScore;
 	static int m_nHighScore;
 	static int m_nSelect;

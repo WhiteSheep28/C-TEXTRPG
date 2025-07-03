@@ -130,6 +130,7 @@
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainSystem.cpp" />
+    <ClCompile Include="Minotauros.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="Socerer.cpp" />
     <ClCompile Include="Ui.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="Goblin.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="MainSystem.h" />
+    <ClInclude Include="MinoTauros.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="Socerer.h" />
     <ClInclude Include="Ui.h" />

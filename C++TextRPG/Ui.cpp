@@ -3,6 +3,7 @@
 #include "MainSystem.h"
 #include "DungeonUi.h"
 #include "Ui.h"
+#include "FarmUi.h"
 #include "Inventory.h"
 #include "Warrior.h"
 #include "Socerer.h"
@@ -52,6 +53,7 @@ void cUi::StartMainUi()
 
 void cUi::CharacterSelectUi(cMainSystem* pMainSystem)
 {
+
 	while (1)
 	{
 		system("cls");
@@ -70,6 +72,12 @@ void cUi::CharacterSelectUi(cMainSystem* pMainSystem)
 
 			CharacterIntroduceUi(pMainSystem, pWarrior);
 
+			if (pWarrior->Getm_nHealth() <= 0)
+			{
+				delete pWarrior;
+				return;
+			}
+
 			delete pWarrior;
 
 			break;
@@ -80,6 +88,12 @@ void cUi::CharacterSelectUi(cMainSystem* pMainSystem)
 
 			CharacterIntroduceUi(pMainSystem, pSocerer);
 			
+			if (pSocerer->Getm_nHealth() <= 0)
+			{
+				delete pSocerer;
+				return;
+			}
+
 			delete pSocerer;
 
 			break;
@@ -90,6 +104,12 @@ void cUi::CharacterSelectUi(cMainSystem* pMainSystem)
 
 			CharacterIntroduceUi(pMainSystem, pArcher);
 			
+			if (pArcher->Getm_nHealth() <= 0)
+			{
+				delete pArcher;
+				return;
+			}
+
 			delete pArcher;
 
 			break;
@@ -117,6 +137,11 @@ void cUi::CharacterIntroduceUi(cMainSystem* pMainSystem, cMainSystem* Character)
 		{
 			MainUi(pMainSystem, Character);
 
+			if (Character->Getm_nHealth() <= 0)
+			{
+				return;
+			}
+
 			break;
 		}
 		case 2: break;
@@ -128,10 +153,10 @@ void cUi::CharacterIntroduceUi(cMainSystem* pMainSystem, cMainSystem* Character)
 void cUi::MainUi(cMainSystem * pMainSystem, cMainSystem * Character)
 {
 	cMainSystem* pInventory = new cInventory;
+	cMainSystem* pFarmUi = new cFarmUi;
 
 	while (1)
 	{
-
 		Character->CharacterUi();
 
 		cout << "{ 최고 던전 탐사 기록 }" << endl;
@@ -149,11 +174,21 @@ void cUi::MainUi(cMainSystem * pMainSystem, cMainSystem * Character)
 		{
 		case 1:
 		{
+			Setm_nBreadCount();
+
 			cMainSystem* pDungeonUi = new cDungeonUi;
 
 			Character->Setm_nMinusHungry();
 			
-			pDungeonUi->DungeonRandomMob(pMainSystem, Character);
+			pDungeonUi->DungeonRandomMob(pMainSystem, Character, pInventory);
+
+			if (Character->Getm_nHealth() <= 0)
+			{
+				delete pInventory;
+				delete pDungeonUi;
+				delete pFarmUi;
+				return;
+			}
 
 			delete pDungeonUi;
 
@@ -161,18 +196,18 @@ void cUi::MainUi(cMainSystem * pMainSystem, cMainSystem * Character)
 		}
 		case 2:
 		{
+			pFarmUi->FarmUi(pMainSystem, Character, pInventory);
 
+			break;
 		}
 		case 3:
 		{
 			pInventory->InventoryUi(pMainSystem, Character);
+
+			break;
 		}
 		case 4:
 		{
-			delete pMainSystem;
-			delete Character;
-			delete pInventory;
-
 			exit(1);
 		}
 		default: continue;
