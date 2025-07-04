@@ -1,21 +1,77 @@
 #include <iostream>
 
 #include "MainSystem.h"
+#include "DungeonUi.h"
 #include "Ui.h"
+#include "FarmUi.h"
+#include "Inventory.h"
+#include "Warrior.h"
+#include "Socerer.h"
+#include "Archer.h"
 
 using namespace std;
 
-int cMainSystem::m_nBossCount = 1;
-int cMainSystem::m_nScore = 1;
-int cMainSystem::m_nSelect = 0;
-int cMainSystem::m_nHighScore = 0;
-int cMainSystem::m_nBreadCount = 1;
-
 void main()
 {
+	cMainSystem* pMainSystem = new cMainSystem();
 	cMainSystem* pUi = new cUi();
 
-	pUi->StartMainUi();
+	//처음 시작
+	while (1)
+	{
+		pUi->StartMainUi();
 
+		pMainSystem->Setm_nSelect();
+
+		switch (pMainSystem->Getm_nSelect())
+		{
+		case 1:
+		{
+			break;
+		}
+		case 2:
+		{
+			return;
+		}
+		default: continue;
+		}
+	}
+
+	//캐릭터 선택창
+	while (1)
+	{
+		pUi->CharacterSelectUi();
+
+		pMainSystem->Setm_nSelect();
+
+		switch (pMainSystem->Getm_nSelect())
+		{
+		case 1:
+		{
+			cMainSystem* pWarrior = new cWarrior;
+			delete pWarrior;
+			break;
+		}
+		case 2:
+		{
+			cMainSystem* pSocerer = new cSocerer;
+			delete pSocerer;
+			break;
+		}
+		case 3:
+		{
+			cMainSystem* pArcher = new cArcher;
+			delete pArcher;
+			break;
+		}
+		default: continue;
+		}
+	}
+
+
+	
+	delete pMainSystem;
 	delete pUi;
 }
+
+//게임 진행의 주요 소스파일

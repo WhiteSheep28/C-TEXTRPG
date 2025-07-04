@@ -98,6 +98,10 @@ void cDungeonUi::DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character
 	{
 		if (Character->Getm_nHealth() <= 0)
 		{
+			m_nBossCount = 1;
+			m_nScore = 1;
+			m_nHighScore = 0;
+			m_nBreadCount = 1;
 			return;
 		}
 
@@ -133,6 +137,7 @@ void cDungeonUi::DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character
 
 		if (Getm_nSelect() == 6)
 		{
+			m_nBossCount = 1;
 			break;
 		}
 	}

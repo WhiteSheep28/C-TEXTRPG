@@ -21,34 +21,10 @@ cUi::~cUi()
 
 void cUi::StartMainUi()
 {
-	cMainSystem* pMainSystem = new cMainSystem();
-
-	while (1)
-	{
-		system("cls");
-		cout << "{ Text RPG }" << endl;
-		cout << "1. 게임 시작하기" << endl;
-		cout << "2. 게임 나가기" << endl;
-
-		pMainSystem->Setm_nSelect();
-
-		switch (Getm_nSelect())
-		{
-		case 1:
-		{
-			CharacterSelectUi(pMainSystem);
-
-			break;
-		}
-		case 2:
-		{
-			delete pMainSystem;
-
-			exit(1);
-		}
-		default: continue;
-		}
-	}
+	system("cls");
+	cout << "{ Text RPG }" << endl;
+	cout << "1. 게임 시작하기" << endl;
+	cout << "2. 게임 나가기" << endl;
 }
 
 void cUi::CharacterSelectUi(cMainSystem* pMainSystem)
@@ -72,7 +48,7 @@ void cUi::CharacterSelectUi(cMainSystem* pMainSystem)
 
 			CharacterIntroduceUi(pMainSystem, pWarrior);
 
-			if (pWarrior->Getm_nHealth() <= 0)
+			if (pWarrior->Getm_nHealth() <= 0 || pMainSystem->Getm_nSelect() == 4)
 			{
 				delete pWarrior;
 				return;
@@ -88,7 +64,7 @@ void cUi::CharacterSelectUi(cMainSystem* pMainSystem)
 
 			CharacterIntroduceUi(pMainSystem, pSocerer);
 			
-			if (pSocerer->Getm_nHealth() <= 0)
+			if (pSocerer->Getm_nHealth() <= 0 || pMainSystem->Getm_nSelect() == 4)
 			{
 				delete pSocerer;
 				return;
@@ -104,7 +80,7 @@ void cUi::CharacterSelectUi(cMainSystem* pMainSystem)
 
 			CharacterIntroduceUi(pMainSystem, pArcher);
 			
-			if (pArcher->Getm_nHealth() <= 0)
+			if (pArcher->Getm_nHealth() <= 0 || pMainSystem->Getm_nSelect() == 4)
 			{
 				delete pArcher;
 				return;
@@ -137,7 +113,7 @@ void cUi::CharacterIntroduceUi(cMainSystem* pMainSystem, cMainSystem* Character)
 		{
 			MainUi(pMainSystem, Character);
 
-			if (Character->Getm_nHealth() <= 0)
+			if (Character->Getm_nHealth() <= 0 || pMainSystem->Getm_nSelect() == 4)
 			{
 				return;
 			}
@@ -208,7 +184,7 @@ void cUi::MainUi(cMainSystem * pMainSystem, cMainSystem * Character)
 		}
 		case 4:
 		{
-			exit(1);
+			return;
 		}
 		default: continue;
 		}

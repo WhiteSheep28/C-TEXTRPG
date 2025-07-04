@@ -10,8 +10,6 @@ public:
 	cArcher();
 	virtual ~cArcher();
 
-	virtual void CharacterUi();
-
 	virtual void SkillTree(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster);
 
 protected:

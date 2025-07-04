@@ -40,7 +40,7 @@ public:
 	virtual void CleanInventory() { ; }
 
 	//Character.h
-	virtual void CharacterUi() { ; }
+	void CharacterUi();
 	virtual void SkillTree(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster) { ; }
 	virtual void CauseAttack() { ; }
 	
@@ -48,7 +48,7 @@ public:
 	virtual void Setm_nHealth(int nDamage) { m_nHealth -= nDamage; } //상대의 체력 감소
 	virtual void Setm_nPlusHealth() 
 	{ 
-		m_nHealth += 10; 
+		m_nHealth += 50; 
 		
 		if (m_nHealth > 100) //체력이 100을 넘지 않도록
 		{

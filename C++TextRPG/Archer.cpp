@@ -16,16 +16,6 @@ cArcher::~cArcher()
 
 }
 
-void cArcher::CharacterUi()
-{
-	system("cls");
-	cout << "{ " << m_strName << " }" << endl << endl;
-	cout << "{ 스텟 }" << endl;
-	cout << "체력 : " << m_nHealth << endl;
-	cout << "공격력 : " << m_nAttack << endl;
-	cout << "허기 : " << m_nHungry << endl << endl;
-}
-
 void cArcher::SkillTree(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster)
 {
 	int nDamage = 0;
