@@ -93,6 +93,8 @@ void cDungeonUi::DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Charact
 
 void cDungeonUi::DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster, cMainSystem* Inventory)
 {
+	m_nBreadCount++;
+	Character->Setm_nMinusHungry();
 
 	while (1)
 	{

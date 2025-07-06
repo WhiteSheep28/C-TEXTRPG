@@ -172,7 +172,6 @@ void cInventory::CleanInventory()
 				{
 					m_nInventorySlot[nCount] = 0;
 				}
-
 				break;
 			}
 		}

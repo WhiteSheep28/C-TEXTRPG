@@ -13,7 +13,6 @@ public:
 	virtual void FarmUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory);
 
 protected:
-	int m_nBreadCost;
 
 private:
 
