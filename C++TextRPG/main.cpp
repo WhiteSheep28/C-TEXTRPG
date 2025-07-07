@@ -89,6 +89,8 @@ void main()
 							//던전
 						case 1:
 						{
+							pMainSystem->Setm_nBreadCount();
+							pWarrior->Setm_nMinusHungry();
 							pDungeonUi->DungeonRandomMob(pMainSystem, pWarrior, pInventory);
 
 							if (pWarrior->Getm_nHealth() <= 0)
@@ -200,6 +202,8 @@ void main()
 							//던전
 						case 1:
 						{
+							pMainSystem->Setm_nBreadCount();
+							pSocerer->Setm_nMinusHungry();
 							pDungeonUi->DungeonRandomMob(pMainSystem, pSocerer, pInventory);
 
 							if (pSocerer->Getm_nHealth() <= 0)
@@ -406,3 +410,8 @@ void main()
 		}
 	}
 }
+
+//최적화
+//아이템 코드 따로
+//대기실로 돌아올 때 모든 체력 회복
+//스태틱 캐스팅으로 함수 내에 들어갈 시 해당 직업에 맞는 형태로 캐스팅하면 됨 그러므로 부모 객체를 호출한다

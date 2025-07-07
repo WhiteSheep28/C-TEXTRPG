@@ -48,3 +48,46 @@ void cMainSystem::CharacterUi()
 	cout << "공격력 : " << m_nAttack << endl;
 	cout << "허기 : " << m_nHungry << endl << endl;
 }
+
+void cMainSystem::SkillTree(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster)
+{
+	int nDamage = 0;
+
+	Character->SkillTreeUi();
+
+	pMainSystem->Setm_nSelect();
+
+	switch (Getm_nSelect())
+	{
+	case 1:
+	{
+		nDamage = m_nAttack;
+		Monster->Setm_nHealth(nDamage);
+		break;
+	}
+	case 2:
+	{
+		nDamage = m_nAttack * 2;
+		Monster->Setm_nHealth(nDamage);
+		break;
+	}
+	case 3:
+	{
+		nDamage = m_nAttack * 10;
+		Monster->Setm_nHealth(nDamage);
+		break;
+	}
+	case 4:
+	{
+		nDamage = m_nAttack * 100;
+		Monster->Setm_nHealth(nDamage);
+		break;
+	}
+	case 5:
+	{
+		break;
+	}
+	case 6: break;
+	default: break;
+	}
+}

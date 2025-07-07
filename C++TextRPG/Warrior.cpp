@@ -16,10 +16,8 @@ cWarrior::~cWarrior()
 
 }
 
-void cWarrior::SkillTree(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster)
+void cWarrior::SkillTreeUi()
 {
-	int nDamage = 0;
-
 	cout << "{ 스킬트리 }" << endl;
 	cout << "1. 일반 공격" << endl;
 	cout << "2. 강하게 베기" << endl;
@@ -27,40 +25,4 @@ void cWarrior::SkillTree(cMainSystem* pMainSystem, cMainSystem* Character, cMain
 	cout << "4. 진심 베기" << endl;
 	cout << "5. 인벤토리" << endl;
 	cout << "6. 나가기" << endl;
-
-	pMainSystem->Setm_nSelect();
-
-	switch (Getm_nSelect())
-	{
-	case 1:
-	{
-		nDamage = m_nAttack;
-		Monster->Setm_nHealth(nDamage);
-		break;
-	}
-	case 2:
-	{
-		nDamage = m_nAttack * 2;
-		Monster->Setm_nHealth(nDamage);
-		break;
-	}
-	case 3:
-	{
-		nDamage = m_nAttack * 10;
-		Monster->Setm_nHealth(nDamage);
-		break;
-	}
-	case 4:
-	{
-		nDamage = m_nAttack * 100;
-		Monster->Setm_nHealth(nDamage);
-		break;
-	}
-	case 5:
-	{
-		break;
-	}
-	case 6: break;
-	default: break;
-	}
 }

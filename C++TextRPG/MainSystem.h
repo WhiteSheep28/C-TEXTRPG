@@ -26,24 +26,28 @@ public:
 	virtual void CharacterSelectUi(cMainSystem* pMainSystem) { ; }
 	virtual void CharacterIntroduceUi(cMainSystem* pMainSystem, cMainSystem* Character) { ; }
 	virtual void MainUi(cMainSystem* pMainSystem, cMainSystem* Character) { ; }
-	
+
 
 	//DungeonUi.h
 	virtual void DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory) { ; }
 	virtual void DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster, cMainSystem* Inventory) { ; }
 	virtual void DungeonRandomItem() { ; }
 
+
 	//FarmUi.h
 	virtual void FarmUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory) { ; }
+
 
 	//Inventory.h
 	virtual void InventoryUi(cMainSystem* pMainSystem, cMainSystem* Character) { ; }
 	virtual void InputInventory(int ItemCode, int ItemNum) { ; }
 	virtual void CleanInventory() { ; }
 
+
 	//Character.h
 	void CharacterUi();
-	virtual void SkillTree(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster) { ; }
+	void SkillTree(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster);
+	virtual void SkillTreeUi() { ; }
 	virtual void CauseAttack() { ; }
 	
 	virtual string Getm_strName() { return m_strName; }

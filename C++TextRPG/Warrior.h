@@ -10,8 +10,7 @@ public:
 	cWarrior();
 	virtual ~cWarrior();
 
-	virtual void SkillTree(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster);
-
+	virtual void SkillTreeUi();
 protected:
 
 private:

@@ -10,7 +10,7 @@ public:
 	cSocerer();
 	virtual ~cSocerer();
 
-	virtual void SkillTree(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster);
+	virtual void SkillTreeUi();
 
 protected:
 
