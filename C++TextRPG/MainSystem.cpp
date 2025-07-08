@@ -40,7 +40,6 @@ void cMainSystem::Setm_nHighScore()
 
 void cMainSystem::CharacterUi()
 {
-	//상속으로 나누기
 	system("cls");
 	cout << "{ " << m_strName << " }" << endl << endl;
 	cout << "{ 스텟 }" << endl;

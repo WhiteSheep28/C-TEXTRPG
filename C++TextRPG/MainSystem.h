@@ -43,16 +43,12 @@ public:
 
 
 	//Inventory.h
-	virtual void InventoryUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Item, cMainSystem* Inventory) { ; }
-	virtual void InputInventory(int ItemCode, int ItemNum) { ; }
-	virtual void CleanInventory() { ; }
 
 
 	//Item.h
-	virtual void SelectItemCode(cMainSystem* Inventory, cMainSystem* MainSystem) { ; }
-	virtual void UseBread(cMainSystem* MainSystem) { ; }
-	virtual void UseHealingPotion(cMainSystem* MainSystem) { ; }
-
+	virtual void SearchItemCode();
+	virtual void UseBread();
+	virtual void UseHealingPotion();
 
 	//Character.h
 	void CharacterUi();
