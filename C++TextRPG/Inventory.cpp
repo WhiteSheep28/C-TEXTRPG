@@ -8,12 +8,6 @@ using namespace std;
 cInventory::cInventory()
 {
 	memset(m_nInventorySlot, 0, 8 * sizeof(int));
-
-	m_nBreadCode = 1;
-	m_nHealingPotionCode = 2;
-
-	m_nMyBread = 0;
-	m_nMyHealingPotion = 0;
 }
 
 cInventory::~cInventory()
@@ -21,7 +15,7 @@ cInventory::~cInventory()
 
 }
 
-void cInventory::InventoryUi(cMainSystem* pMainSystem, cMainSystem* Character)
+void cInventory::InventoryUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Item, cMainSystem* Inventory)
 {
 	while (1)
 	{
@@ -32,6 +26,7 @@ void cInventory::InventoryUi(cMainSystem* pMainSystem, cMainSystem* Character)
 		system("cls");
 		cout << "{ 인벤토리 }" << endl;
 
+		//인벤토리 표시  
 		while (nCount != 8)
 		{
 			cout << nCount << ". ";
@@ -45,48 +40,17 @@ void cInventory::InventoryUi(cMainSystem* pMainSystem, cMainSystem* Character)
 				HealthPotionUi();
 				break;
 			}
-
+			    
 			cout << endl;
 
 			nCount++;
 		}
-
 		cout << nCount << ". 나가기" << endl;
 
 		pMainSystem->Setm_nSelect();
 
-		switch (Getm_nSelect())
-		{
-		case 0:
-		{
-			if (m_nInventorySlot[Getm_nSelect()] == 1)
-			{
-				Character->Setm_nPlusHungry();
-				m_nMyBread--;
-			}
-			if (m_nInventorySlot[Getm_nSelect()] == 2)
-			{
-				Character->Setm_nPlusHealth();
-				m_nMyHealingPotion--;
-			}
-			break;
-		}
-		case 1:
-		{
-			if (m_nInventorySlot[Getm_nSelect()] == 1)
-			{
-				Character->Setm_nPlusHungry();
-				m_nMyBread--;
-			}
-			if (m_nInventorySlot[Getm_nSelect()] == 2)
-			{
-				Character->Setm_nPlusHealth();
-				m_nMyHealingPotion--;
-			}
-			break;
-		}
-		default: break;
-		}
+		//아이템 사용
+		Item->SelectItemCode(Inventory, pMainSystem);
 
 		if (Getm_nSelect() == nCount)
 		{
@@ -104,7 +68,6 @@ void cInventory::InputInventory(int ItemCode, int ItemNum)
 	{
 		if (m_nInventorySlot[nCount] == ItemCode)
 		{
-
 			if (ItemCode == 1)
 			{
 				m_nMyBread += ItemNum;

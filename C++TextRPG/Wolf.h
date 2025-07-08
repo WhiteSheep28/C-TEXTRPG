@@ -1,10 +1,11 @@
 #pragma once
 
 #include "MainSystem.h"
+#include "Character.h"
 
 using namespace std;
 
-class cWolf : public cMainSystem
+class cWolf : public cCharacter
 {
 public:
 	cWolf();

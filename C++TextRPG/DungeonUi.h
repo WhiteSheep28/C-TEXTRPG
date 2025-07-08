@@ -10,10 +10,9 @@ public:
 	cDungeonUi();
 	virtual ~cDungeonUi();
 
-	virtual void DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory);
-
-	virtual void DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monsterc, cMainSystem* Inventory);
-
+	virtual void DungeonStart(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory, cMainSystem* Item);
+	virtual void DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory, cMainSystem* Item);
+	virtual void DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monsterc, cMainSystem* Inventory, cMainSystem* Item);
 	void DungeonRandomItem();
 
 	int Getm_nRandomItem() { return m_nRandomItem; }

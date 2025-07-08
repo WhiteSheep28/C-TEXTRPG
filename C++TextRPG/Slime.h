@@ -1,10 +1,11 @@
 #pragma once
 
 #include "MainSystem.h"
+#include "Character.h"
 
 using namespace std;
 
-class cSlime : public cMainSystem
+class cSlime : public cCharacter
 {
 public:
 	cSlime();

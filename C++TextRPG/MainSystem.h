@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>	
+
 using namespace std;
 
 class cMainSystem
@@ -19,6 +21,7 @@ public:
 	static void Setm_nBreadCount() { m_nBreadCount++; }
 	static void Setm_nBossCount() { m_nBossCount++; }
 	static int Getm_nBossCount() { return m_nBossCount; }
+	int Getm_nInventorySlot() { return m_nInventorySlot[m_nSelect]; }
 
 
 	//Ui.h
@@ -29,8 +32,9 @@ public:
 
 
 	//DungeonUi.h
-	virtual void DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory) { ; }
-	virtual void DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster, cMainSystem* Inventory) { ; }
+	virtual void DungeonStart(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory, cMainSystem* Item) { ; }
+	virtual void DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory, cMainSystem* Item) { ; }
+	virtual void DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster, cMainSystem* Inventory, cMainSystem* Item) { ; }
 	virtual void DungeonRandomItem() { ; }
 
 
@@ -39,9 +43,15 @@ public:
 
 
 	//Inventory.h
-	virtual void InventoryUi(cMainSystem* pMainSystem, cMainSystem* Character) { ; }
+	virtual void InventoryUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Item, cMainSystem* Inventory) { ; }
 	virtual void InputInventory(int ItemCode, int ItemNum) { ; }
 	virtual void CleanInventory() { ; }
+
+
+	//Item.h
+	virtual void SelectItemCode(cMainSystem* Inventory, cMainSystem* MainSystem) { ; }
+	virtual void UseBread(cMainSystem* MainSystem) { ; }
+	virtual void UseHealingPotion(cMainSystem* MainSystem) { ; }
 
 
 	//Character.h
@@ -76,6 +86,9 @@ public:
 	virtual int Getm_nHungry() { return m_nHungry; }
 	
 protected:
+	int m_nInventorySlot[8];
+
+
 	static int m_nBossCount;
 
 	static int m_nBreadCount;

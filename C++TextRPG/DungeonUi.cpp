@@ -24,14 +24,22 @@ void cDungeonUi::DungeonRandomItem()
 	m_nRandomItem = rand() % 2 + 1;
 }
 
-void cDungeonUi::DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory)
+void cDungeonUi::DungeonStart(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory, cMainSystem* Item)
+{
+	pMainSystem->Setm_nBreadCount();
+	Character->Setm_nMinusHungry();
+	DungeonRandomMob(pMainSystem, Character, Inventory, Item);
+}
+
+void cDungeonUi::DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Inventory, cMainSystem* Item)
 {
 	while (1)
 	{
+		//보스 몬스터
 		if (pMainSystem->Getm_nBossCount() == 10)
 		{
 			cMainSystem* pMinoTauros = new cMinoTauros;
-			DungeonFightUi(pMainSystem, Character, pMinoTauros, Inventory);
+			DungeonFightUi(pMainSystem, Character, pMinoTauros, Inventory, Item);
 			if (Character->Getm_nHealth() <= 0)
 			{
 				delete pMinoTauros;
@@ -41,6 +49,7 @@ void cDungeonUi::DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Charact
 			break;
 		}
 
+		//일반 몬스터 
 		m_nRandomMonster = rand() % 3;
 
 		switch (m_nRandomMonster)
@@ -48,7 +57,7 @@ void cDungeonUi::DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Charact
 		case 0:
 		{
 			cMainSystem* pGoblin = new cGoblin;
-			DungeonFightUi(pMainSystem, Character, pGoblin, Inventory);
+			DungeonFightUi(pMainSystem, Character, pGoblin, Inventory, Item);
 			if (Character->Getm_nHealth() <= 0)
 			{
 				delete pGoblin;
@@ -60,7 +69,7 @@ void cDungeonUi::DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Charact
 		case 1:
 		{
 			cMainSystem* pSlime = new cSlime;
-			DungeonFightUi(pMainSystem, Character, pSlime, Inventory);
+			DungeonFightUi(pMainSystem, Character, pSlime, Inventory, Item);
 			if (Character->Getm_nHealth() <= 0)
 			{
 				delete pSlime;
@@ -72,7 +81,7 @@ void cDungeonUi::DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Charact
 		case 2:
 		{
 			cMainSystem* pWolf = new cWolf;
-			DungeonFightUi(pMainSystem, Character, pWolf, Inventory);
+			DungeonFightUi(pMainSystem, Character, pWolf, Inventory, Item);
 			if (Character->Getm_nHealth() <= 0)
 			{
 				delete pWolf;
@@ -91,9 +100,8 @@ void cDungeonUi::DungeonRandomMob(cMainSystem* pMainSystem, cMainSystem* Charact
 	}
 }
 
-void cDungeonUi::DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster, cMainSystem* Inventory)
+void cDungeonUi::DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster, cMainSystem* Inventory, cMainSystem* Item)
 {
-
 	while (1)
 	{
 		if (Character->Getm_nHealth() <= 0)
@@ -132,7 +140,7 @@ void cDungeonUi::DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character
 
 		if (Getm_nSelect() == 5)
 		{
-			Inventory->InventoryUi(pMainSystem, Character);
+			Inventory->InventoryUi(pMainSystem, Character, Item, Inventory);
 		}
 
 		if (Getm_nSelect() == 6)
