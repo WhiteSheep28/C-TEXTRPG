@@ -129,7 +129,7 @@ void cDungeonUi::DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character
 			pMainSystem->Setm_nBossCount();
 			pMainSystem->Setm_nScore();
 			DungeonRandomItem();
-			Inventory->InputInventory(Getm_nRandomItem(), 1);
+			Inventory->GetItem(Character, Item, m_nRandomItem, 1);
 			break;
 		}
 
@@ -140,7 +140,7 @@ void cDungeonUi::DungeonFightUi(cMainSystem* pMainSystem, cMainSystem* Character
 
 		if (Getm_nSelect() == 5)
 		{
-			Inventory->InventoryUi(pMainSystem, Character, Item, Inventory);
+			Inventory->InventoryUi(pMainSystem, Character, Item);
 		}
 
 		if (Getm_nSelect() == 6)

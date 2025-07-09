@@ -21,7 +21,6 @@ public:
 	static void Setm_nBreadCount() { m_nBreadCount++; }
 	static void Setm_nBossCount() { m_nBossCount++; }
 	static int Getm_nBossCount() { return m_nBossCount; }
-	int Getm_nInventorySlot() { return m_nInventorySlot[m_nSelect]; }
 
 
 	//Ui.h
@@ -43,18 +42,20 @@ public:
 
 
 	//Inventory.h
-
+	virtual void InventoryUi(cMainSystem* MainSystem, cMainSystem* Character, cMainSystem* Item) { ; }
+	virtual void GetItem(cMainSystem* Character, cMainSystem* Item, int ItemNum, int ItemCount) { ; }
+	virtual void InventoryArrange() { ; }
 
 	//Item.h
-	virtual void SearchItemCode();
-	virtual void UseBread();
-	virtual void UseHealingPotion();
+	virtual void SearchItemCode(cMainSystem* Character, int ItemNum, int SelectTool);
 
 	//Character.h
 	void CharacterUi();
 	void SkillTree(cMainSystem* pMainSystem, cMainSystem* Character, cMainSystem* Monster);
 	virtual void SkillTreeUi() { ; }
 	virtual void CauseAttack() { ; }
+	virtual void UseBread() { ; }
+	virtual void UseHealingPotion() { ; }
 	
 	virtual string Getm_strName() { return m_strName; }
 	virtual void Setm_nHealth(int nDamage) { m_nHealth -= nDamage; } //상대의 체력 감소
@@ -82,9 +83,6 @@ public:
 	virtual int Getm_nHungry() { return m_nHungry; }
 	
 protected:
-	int m_nInventorySlot[8];
-
-
 	static int m_nBossCount;
 
 	static int m_nBreadCount;
@@ -98,7 +96,6 @@ protected:
 	int m_nHealth;
 	int m_nAttack;
 	int m_nHungry;
-	int m_nCharacterCode;
 
 private:
 

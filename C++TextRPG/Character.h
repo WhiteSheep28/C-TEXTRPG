@@ -1,6 +1,8 @@
 #pragma once
 
 #include "MainSystem.h"
+#include "Inventory.h"
+#include "Item.h"
 
 using namespace std;
 
@@ -12,8 +14,13 @@ public:
 
 	virtual void SkillTreeUi() { ; }
 
+	virtual void UseBread();
+	virtual void UseHealingPotion();
+
 protected:
 
 private:
-
+	
+	friend class cInventory;
+	friend class cItem;
 };

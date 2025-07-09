@@ -164,7 +164,7 @@ void main()
 					{
 					case 1:
 					{
-						pInventory->InputInventory(1, pMainSystem->Getm_nBreadCost());
+						pInventory->GetItem(pCharacter, pItem, 1, pMainSystem->Getm_nBreadCost());
 
 						pMainSystem->Resetm_nBreadCost();
 
@@ -194,7 +194,7 @@ void main()
 			//인벤토리
 			case 3:
 			{
-				pInventory->InventoryUi(pMainSystem, pCharacter, pItem, pInventory);
+				pInventory->InventoryUi(pMainSystem, pCharacter, pItem);
 
 				break;
 			}
